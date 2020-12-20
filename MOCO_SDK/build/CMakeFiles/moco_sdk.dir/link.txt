@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -O3 -O3 -DNDEBUG   CMakeFiles/moco_sdk.dir/src/main.cpp.o CMakeFiles/moco_sdk.dir/src/moco_sdk.cpp.o CMakeFiles/moco_sdk.dir/src/moco_sdk_uart.cpp.o  -o moco_sdk -rdynamic -lserial -lwiringPi 

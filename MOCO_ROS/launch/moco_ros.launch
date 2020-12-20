@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="moco_ros" type="moco_ros" name="moco_ros" output="screen">
+        <param name="port_name" type="string" value="/dev/ttyS0" />
+        <param name="baudrate" type="int" value="115200" />       
+    </node>
+</launch>
