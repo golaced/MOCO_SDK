@@ -56,7 +56,7 @@ rostopic pub -1 moco/cmd_gait std_msgs/Float32 -- 4   <br>
 （2）PC端：不需要编译MOCO_ROS文件夹，编译需安装OpenCV和ArUco库；<br>
 
 3.ROS测试流程<br>
-首先可以选择使用Putty或VNC登录树莓派启动主节点（当然更推荐的方式是在PC端建立无线网络实现远程连接并使用SSH启动具体流程可以参考https://zhuanlan.zhihu.com/p/338576271），启动步骤如下：<br>
+首先可以选择使用Putty或VNC登录树莓派启动主节点（当然更推荐的方式是在PC端建立无线网络实现远程连接并使用SSH启动具体流程可以参考https://zhuanlan.zhihu.com/p/338576271 ），启动步骤如下：<br>
 （1）在catkin_make完成后source当前工作空间，输入roslaunch moco_ros moco_all.launch启动主节点；
 注：主任务启动后树莓派会通过串口与控制器交互，采集底层机器人的关节角度、姿态、里程计数据，并发布对应采集的摄像头数据（具体启动是USB还是CSI并口相机可在moco_cv.launch中调节对应的ID号 <param name="camera_name" type="int" value="0" />）<br>
 （2）在启动主任务后，如PC机与树莓派实现连接，并按教程配置好主从机IP则可以通过rostopic list命令查看是否能在PC机收到树莓派发布的机载传感器数据，此时可以通过运行moco_cap_sub节点订阅显示相机数据，通过echo命令打印对应的传感器数据；<br>
