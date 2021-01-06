@@ -1,22 +1,29 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(moco_ros)
+project(moco_plan)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
-
+add_compile_options(-std=c++11)
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "/usr/local/share/OpenCV")
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/../bin)
+set(OpenCV_DIR  /usr/local)
+find_package(OpenCV REQUIRED)
+find_package(aruco  REQUIRED )
+set(ARUCO_PATH /usr/local)
+set(ARUCO_INCLUDE_DIRS ${ARUCO_PATH}/include/aruco )
+set(ARUCO_LIBS_DIRS ${ARUCO_PATH}/lib )
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-set(Serial_DIR  /usr/local)
-find_package(serial REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
+  OpenCV REQUIRED
   roscpp
   rospy
   std_msgs
   message_generation
-  nav_msgs
-  serial
-  tf
+  image_transport 
+  cv_bridge
+  aruco 
+
 )
 
 ## System dependencies are found with CMake's conventions
@@ -111,8 +118,8 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES base_controller
-  CATKIN_DEPENDS message_generation nav_msgs roscpp rospy std_msgs tf
-#  DEPENDS system_lib
+  CATKIN_DEPENDS message_generation  roscpp rospy std_msgs image_transport cv_bridge 
+#  DEPENDS system_lib 
 )
 
 ###########
@@ -122,8 +129,11 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
+  ${OpenCV_INCLUDE_DIRS} 
+  ${ARUCO_INCLUDE_DIRS}
   include ${catkin_INCLUDE_DIRS}
   include ${CMAKE_CURRENT_SOURCE_DIR}/include/
+   "/usr/include/eigen3/"
 )
 
 
@@ -201,17 +211,12 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(moco_ros
-include/types.hpp
-include/serialport_setting.hpp
-include/queue.hpp
-include/moco_sdk.h
-include/moco_sdk_uart.h
-src/moco_ros.cpp
-src/moco_sdk.cpp
-src/moco_sdk_uart.cpp
+add_executable(moco_track_pix
+src/moco_track_pix.cpp
 )
-add_dependencies(moco_ros  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(moco_ros
+add_dependencies(moco_track_pix  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(moco_track_pix
   ${catkin_LIBRARIES}
 )
+
+

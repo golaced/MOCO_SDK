@@ -280,7 +280,7 @@ void ros_test(char ros_connect,float dt)
 		timer+=dt;
 	else
 		timer=0;
-	if(timer>2.5)
+	if(timer>1)
 	{
 	cout<<"SDK::ROS Connect In!!"<<endl;
 	state_sdk++;
@@ -300,7 +300,7 @@ void ros_test(char ros_connect,float dt)
 	
 	case 2:
 	timer+=dt;
-	if(timer>1.5)
+	if(timer>2)
 	{
 		if(moco_sdk.mode_ros==GAIT_TROT){
 			if(set_gait_mode(GAIT_TROT))
@@ -316,7 +316,7 @@ void ros_test(char ros_connect,float dt)
 	case 3:
 	timer+=dt;
 		
-	if(timer>5)
+	if(timer>0.5)
 	{	
 		if(moco_sdk.mode_ros==GAIT_ST_IMU||moco_sdk.mode_ros==GAIT_ST_RC){
 			if(set_gait_mode(GAIT_ST_IMU))
@@ -330,7 +330,20 @@ void ros_test(char ros_connect,float dt)
 	}
 	break;
 
-	
+	case 4:
+	timer+=dt;
+	if(timer>0.5)
+	{
+		if(moco_sdk.mode_ros==GAIT_TROT){
+			if(set_gait_mode(GAIT_TROT))
+			{
+			cout<<"SDK::TROT Active!!"<<endl;
+			state_sdk=3;
+			timer=0;
+			}
+		}
+	}
+	break;
 	//Protect
 	case 99:
 		if(set_gait_mode(GAIT_RECOVER))

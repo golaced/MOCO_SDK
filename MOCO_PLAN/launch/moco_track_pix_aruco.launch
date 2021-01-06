@@ -1,0 +1,15 @@
+<launch>
+    <node pkg="moco_plan" type="moco_track_pix" name="moco_track_pix" output="screen">
+	 <remap from="/moco/pix_track_target" to="/moco/aruco_pix" />  
+         <param name="max_spd_x"  value="0.1" />
+  	 <param name="max_spd_y"  value="0.1" />
+	 <param name="max_rate_z"  value="35" />
+	 <param name="en_keyboard"  value="0" />
+	 <param name="en_remote"    value="0" />
+    </node>
+
+    <node pkg="moco_cv" type="moco_cv_aruco" name="moco_cv_aruco" output="screen">
+         <param name="MarkerSize"     value="0.05" />
+         <param name="SET_ID"         value="10" />  
+    </node>
+</launch>

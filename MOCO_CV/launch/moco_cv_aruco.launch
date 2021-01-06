@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="moco_cv" type="moco_cv_aruco" name="moco_cv_aruco" output="screen">
+         <param name="ball_size"     value="0.032" />
+         <param name="pixz_at_10cm"  value="110" />  
+	 <param name="off5cm_pix_at_10cm"  value="220" />  
+ 	 <param name="show_image"  value="0" />  
+
+    </node>
+
+</launch>

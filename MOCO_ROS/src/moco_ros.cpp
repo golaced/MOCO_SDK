@@ -34,7 +34,7 @@ serial::Serial m_serial;
 void callback1(const geometry_msgs::Twist& cmd_vel)
 {
 	static int cnt_print=0;
-	if(cnt_print++>100){cnt_print=0;
+	if(cnt_print++>100&&0){cnt_print=0;
 	ROS_INFO("Received a /cmd_vel message!");
 	ROS_INFO("Linear Components:[%f,%f,%f]",cmd_vel.linear.x,cmd_vel.linear.y,cmd_vel.linear.z);
 	ROS_INFO("Angular Components:[%f,%f,%f]",cmd_vel.angular.x,cmd_vel.angular.y,cmd_vel.angular.z);

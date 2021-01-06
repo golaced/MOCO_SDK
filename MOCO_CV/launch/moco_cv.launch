@@ -1,0 +1,14 @@
+<launch>
+    <node pkg="moco_cv" type="moco_cap_pub" name="moco_cap_pub" output="screen">
+         <param name="camera_name" type="int" value="0" />
+         <param name="image_w" type="int" value="320" /> 
+	  <param name="image_h" type="int" value="240" />     
+ 	  <param name="image_filp" type="int" value="1" />       
+	  <param name="show_image" type="int" value="0" />    
+    </node>
+
+    <node pkg="moco_cv" type="moco_cap_sub" name="moco_cap_sub" output="screen">
+
+    </node>
+
+</launch>

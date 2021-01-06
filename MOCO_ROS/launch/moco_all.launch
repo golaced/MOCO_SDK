@@ -1,0 +1,13 @@
+<launch>
+    <node pkg="moco_ros" type="moco_ros" name="moco_ros" output="screen">
+        <param name="port_name" type="string" value="/dev/ttyS0" />
+        <param name="baudrate" type="int" value="115200" />       
+    </node>
+ 
+    <node pkg="moco_cv" type="moco_cap_pub" name="moco_cap_pub" output="screen">
+         <param name="camera_name" type="int" value="0" />
+         <param name="image_w" type="int" value="320" /> 
+	  <param name="image_h" type="int" value="240" />     
+ 	  <param name="image_filp" type="int" value="1" />       
+    </node>
+</launch>
